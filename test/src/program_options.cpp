@@ -11,7 +11,7 @@
 void ProgramOptions::executeOptions (int argNum, char* argv[])
 {
 	int cmdNum = -1;
-	for (int i = 1; i <= argNum; i++)
+	for (int i = 1; i < argNum; i++)
 	{
 		cmdNum = checkOptionExists((string)argv[i]);
 		if ((cmdNum >= 0) && (funcVect.size()) )
