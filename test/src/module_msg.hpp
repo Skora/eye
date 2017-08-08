@@ -25,6 +25,7 @@ public:
 	char* createEventJson(const char* event, int arg1, int arg2, int arg3);
 	char* createEventJson(const char* event, int arg1, int arg2);
 	char* createEventJson(const char* event, int arg1);
+	char* createCmdJson(const char* event, int arg1);
 
 };
 

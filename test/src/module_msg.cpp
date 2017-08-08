@@ -107,6 +107,28 @@ char* MoudleMsgs::createEventJson(const char* event, int arg1)
 	return msg;
 }
 
+char* MoudleMsgs::createCmdJson(const char* cmd, int arg1)
+{
+	cJSON *root;
+	cJSON *pl;
+	char* msg;
+
+	string serial = patch::to_string(SERIAL_ID);
+	serial += "_in";
+	const char * topic = serial.c_str();
+
+	root = cJSON_CreateObject();
+	cJSON_AddItemToObject(root, "top", cJSON_CreateString(topic));
+	cJSON_AddItemToObject(root, "pl", pl = cJSON_CreateObject());
+	cJSON_AddStringToObject(pl, "cmd", cmd);
+	cJSON_AddNumberToObject(pl, "arg1", arg1);
+	cJSON_AddNumberToObject(root, "act", 1);
+	msg = cJSON_Print(root);
+	//msg = MoudleMsgs::addJsonLength(msg, strlen(msg));
+	cJSON_Delete(root);
+	return msg;
+}
+
 char* MoudleMsgs::addJsonLength(char *jsonMsg, int length)
 {
 	#define LEN_BYTES 4U
